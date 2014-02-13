@@ -1,6 +1,6 @@
 <?php
 
-include 'includes/url-page.php';
+require_once 'includes/url-page.php';
 
 function remove_http ($url) {
   $disallowed = array('http://', 'https://');
