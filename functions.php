@@ -3,20 +3,6 @@
 include 'includes/url-page.php';
 
 /**
- * Get images for page.
- *
- * @param int $post_id
- *
- * @return array
- */
-
-function get_images ($post_id) {
-  return array_map(function ($id) {
-    return wp_get_attachment_url($id);
-  }, dfi_get_post_attachment_ids($post_id));
-}
-
-/**
  * Get array of all pages.
  *
  * @return array
@@ -33,9 +19,7 @@ function get_pages_array () {
     $obj->id = $post->ID;
     $obj->title = $post->post_title;
     $obj->content = $post->post_content;
-    $obj->images = get_images($post->ID);
-    $obj->urls = get_post_meta($post->ID, 'url_page_value', true);
-    $obj->urls = explode("\n", $obj->urls);
+    $obj->urls = get_post_meta($post->ID, 'url_page', true);
     return $obj;
   }, $posts);
   return $posts;
