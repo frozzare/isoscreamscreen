@@ -49,7 +49,7 @@ function get_pages_array () {
  */
 
 function get_transitions () {
-  return array('katt', 'mus', 'hund');
+  return array('default', 'cube', 'page', 'concave', 'zoom', 'linear', 'fade', 'none');
 }
 
 /**
