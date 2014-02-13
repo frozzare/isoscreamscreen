@@ -6,7 +6,7 @@
       , $ul = $this.next()
       , tmpl = $('<div>' + $('#url-page-list-template').html() + '</div>')
       , $li = $('<li />')
-      , size = $ul.find('li').size();
+      , size = $ul.find('li').size() + 1;
 
     tmpl.find('.url-page-tmpl-link').attr('name', 'url-page[' + size + '][link]');
     tmpl.find('.url-page-tmpl-transition').attr('name', 'url-page[' + size + '][transition]');
