@@ -5,10 +5,31 @@
  */
 
 function url_page_add_custom_box () {
-  add_meta_box('url_page_id', __('URLs to fetch from', 'isoscreamscreen'), 'url_page_custom_box', 'page');
+  add_meta_box('url_page_id', __('URLs to fetch content from', 'isoscreamscreen'), 'url_page_custom_box', 'page');
 }
 
 add_action('add_meta_boxes', 'url_page_add_custom_box');
+
+function url_page_admin_head () {
+  ?>
+  <style type="text/css">
+    .url-page {}
+    .url-page-right { float: right; }
+    .url-page-list { }
+    .url-page-list li { float: left; width: 100%; }
+    .url-page-list-delete { color: red; text-decoration: underline; }
+    .clearfix { clear: both; }
+  </style>
+  <?
+}
+
+add_action('admin_head', 'url_page_admin_head');
+
+function url_page_admin_footer () {
+  echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/js/admin.js"></script>';
+}
+
+add_action('admin_footer', 'url_page_admin_footer');
 
 /**
  * Meta box output.
@@ -17,16 +38,42 @@ add_action('add_meta_boxes', 'url_page_add_custom_box');
  */
 
 function url_page_custom_box ($post) {
-
   wp_nonce_field( 'url_page_custom_box', 'url_page_custom_box_nonce' );
-  $value = get_post_meta($post->ID, 'url_page_value', true);
-  $value = str_replace(' ', "\n", $value);
+  $value = get_post_meta($post->ID, 'url_page', true);
+  if (!is_array($value) || empty($value) && is_array($value)) $value = array('link' => '');
+  ?>
+  <div id="url-page-list-template" class="hidden">
+    <label>Länk</label>
+    <input type="text" name="url-page[][link]" class="url-page-tmpl-link" />
+    <label>Transition</label>
+    <select name="url-page[][transition]" class="url-page-tmpl-transition">
+      <?php foreach (get_transitions() as $t): ?>
+        <option value="<?= $t; ?>"><?= $t; ?></option>
+      <?php endforeach; ?>
+    </select>
+    <a href="#" class="url-page-list-delete">X</a>
+  </div>
+  <a href="#" class="url-page-right add-new-url">Lägg till ny länk</a>
+  <ul class="url-page-list">
+    <?php $i = 0; foreach ($value as $v): ?>
+      <?php if ((isset($v['link']) && !empty($v['link'])) || count($value) === 1): ?>
+      <li>
+        <label>Länk</label>
+        <input type="text" name="url-page[<?= $i; ?>][link]" value="<?= $v['link']; ?>" />
+        <label>Transition</label>
+        <select name="url-page[<?= $i; ?>][transition]">
+          <?php foreach (get_transitions() as $t): ?>
+            <option value="<?= $t; ?>" <?= $t == $v['transition'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
+          <?php endforeach; ?>
+        </select>
+        <a href="#" class="url-page-list-delete">X</a>
+      </li>
+      <?php endif; $i++; ?>
+    <?php endforeach; ?>
+  </ul>
+  <div class="clearfix"></div>
 
-  echo '<p><label for="url_page_field">';
-  _e( 'One url per line', 'isoscreamscreen' );
-  echo '</label></p>';
-
-  echo '<textarea class="textarea" id="url_page_field" name="url_page_field" style="width:100%;height:250px;">' . esc_attr($value) . '</textarea>';
+  <?php
 }
 
 /**
@@ -44,7 +91,7 @@ function url_page_save_postdata( $post_id ) {
    */
 
   // Check if our nonce is set.
-  if ( ! isset( $_POST['url_page_custom_box_nonce'] ) )
+  if ( ! isset( $_POST['url_page_custom_box_nonce'] ))
     return $post_id;
 
   $nonce = $_POST['url_page_custom_box_nonce'];
@@ -72,10 +119,10 @@ function url_page_save_postdata( $post_id ) {
   /* OK, its safe for us to save the data now. */
 
   // Sanitize user input.
-  $value = sanitize_text_field( $_POST['url_page_field'] );
-  $value = str_replace(' ', "\n", $value);
+  $value = $_POST['url-page'];
 
   // Update the meta field in the database.
-  update_post_meta( $post_id, 'url_page_value', $value );
+
+  update_post_meta( $post_id, 'url_page', $value );
 }
 add_action( 'save_post', 'url_page_save_postdata' );

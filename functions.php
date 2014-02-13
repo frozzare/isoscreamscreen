@@ -41,7 +41,6 @@ function get_pages_array () {
   return $posts;
 }
 
-function remove_page_meta_boxes () {
+function get_transitions () {
+  return array('katt', 'mus', 'hund');
 }
-
-add_action( 'admin_menu', 'remove_post_meta_boxes' );
