@@ -35,14 +35,12 @@ function get_pages_array () {
       $obj = new stdClass;
       if (preg_match('/(\.jpg|\.png|\.bmp)$/', $url['link'])) {
         $obj->bgUrl = $url['link'];
-      } else if (!empty($url['link'])) {
-        $obj->url = $url['link'];
       } else {
-        return null;
+        $obj->url = $url['link'];
       }
       $obj->backgroundTransition = $url['transition'];
       return $obj;
-    }, $meta);
+    }, array_filter($meta));
   }, $posts));
   $obj = new stdClass;
   $obj->content = $posts;
