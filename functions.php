@@ -29,6 +29,8 @@ function get_pages_array () {
     // $obj->id = $post->ID;
     // $obj->title = $post->post_title;
     // $obj->text = $post->post_content;
+    $meta = get_post_meta($post->ID, 'url_page', true);
+    if (!is_array($meta)) $meta = array();
     return array_map(function ($url) {
       $obj = new stdClass;
       $is_image = @getimagesize($url['link']);
@@ -39,7 +41,7 @@ function get_pages_array () {
       }
       $obj->backgroundTransition = $url['transition'];
       return $obj;
-    }, get_post_meta($post->ID, 'url_page', true));
+    }, $meta);
   }, $posts));
   return $posts;
 }
