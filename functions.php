@@ -25,9 +25,9 @@ function get_pages_array () {
     'numberposts' => -1
   ));
   $posts = array_filter(array_map(function ($post) {
-    $obj = array();
+    $obj = new stdClass;
     // $obj->id = $post->ID;
-    // $obj->title = $post->post_title;
+    $obj->title = $post->post_title;
     // $obj->text = $post->post_content;
     $meta = get_post_meta($post->ID, 'url_page', true);
     if (!is_array($meta)) $meta = array();
@@ -43,7 +43,8 @@ function get_pages_array () {
     }, $meta);
     $res = array();
     foreach ($post as $p) $res[] = $p;
-    return $res;
+    $obj->items = $res;
+    return $obj;
   }, $posts));
   $obj = new stdClass;
   $obj->content = $posts;
