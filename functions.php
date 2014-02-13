@@ -31,7 +31,7 @@ function get_pages_array () {
     // $obj->text = $post->post_content;
     $meta = get_post_meta($post->ID, 'url_page', true);
     if (!is_array($meta)) $meta = array();
-    return array_map(function ($url) {
+    $post = array_map(function ($url) {
       $obj = new stdClass;
       if (preg_match('/(\.jpg|\.png|\.bmp)$/', $url['link'])) {
         $obj->bgUrl = $url['link'];
@@ -41,6 +41,9 @@ function get_pages_array () {
       $obj->backgroundTransition = $url['transition'];
       return $obj;
     }, $meta);
+    $res = array();
+    foreach ($post as $p) $res[] = $p;
+    return $res;
   }, $posts));
   $obj = new stdClass;
   $obj->content = $posts;
