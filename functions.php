@@ -35,8 +35,10 @@ function get_pages_array () {
       $obj = new stdClass;
       if (preg_match('/(\.jpg|\.png|\.bmp)$/', $url['link'])) {
         $obj->bgUrl = $url['link'];
-      } else {
+      } else if (!empty($url['link'])) {
         $obj->url = $url['link'];
+      } else {
+        return null;
       }
       $obj->backgroundTransition = $url['transition'];
       return $obj;
