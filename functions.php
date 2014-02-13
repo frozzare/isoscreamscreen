@@ -25,7 +25,7 @@ function get_pages_array () {
     'numberposts' => -1
   ));
   $posts = array_filter(array_map(function ($post) {
-    // $obj = array();
+    $obj = array();
     // $obj->id = $post->ID;
     // $obj->title = $post->post_title;
     // $obj->text = $post->post_content;
@@ -43,7 +43,9 @@ function get_pages_array () {
       return $obj;
     }, $meta);
   }, $posts));
-  return $posts;
+  $obj = new stdClass;
+  $obj->content = $posts;
+  return (object)$obj;
 }
 
 function get_transitions () {

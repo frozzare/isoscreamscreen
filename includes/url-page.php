@@ -1,53 +1,6 @@
 <?php
 
 /**
- * Meta box output.
- *
- * @param $post
- */
-
-function url_page_custom_box ($post) {
-  wp_nonce_field( 'url_page_custom_box', 'url_page_custom_box_nonce' );
-  $value = get_post_meta($post->ID, 'url_page', true);
-  if (!is_array($value) || empty($value) && is_array($value)) $value = array('link' => '');
-  ?>
-  <div id="url-page-list-template" class="hidden">
-    <label>Länk</label>
-    <input type="text" name="url-page[][link]" class="url-page-tmpl-link" />
-    <label>Transition</label>
-    <select name="url-page[][transition]" class="url-page-tmpl-transition">
-      <?php foreach (get_transitions() as $t): ?>
-        <option value="<?= $t; ?>"><?= $t; ?></option>
-      <?php endforeach; ?>
-    </select>
-    <a href="#" class="url-page-list-delete">X</a>
-  </div>
-  <a href="#" class="url-page-right add-new-url">Lägg till ny länk</a>
-  <ul class="url-page-list">
-    <?php $i = 0; foreach ($value as $v): ?>
-      <?php if ((isset($v['link']) && !empty($v['link'])) || count($value) === 1): ?>
-        <li>
-          <label>Länk</label>
-          <input type="text" name="url-page[<?= $i; ?>][link]" value="<?= $v['link']; ?>" />
-          <label>Transition</label>
-          <select name="url-page[<?= $i; ?>][transition]">
-            <?php foreach (get_transitions() as $t): ?>
-              <?php if (isset($v['transition'])): ?>
-                <option value="<?= $t; ?>" <?= $t == $v['transition'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
-              <?php endif; ?>
-            <?php endforeach; ?>
-          </select>
-          <a href="#" class="url-page-list-delete">X</a>
-        </li>
-      <?php endif; $i++; ?>
-    <?php endforeach; ?>
-  </ul>
-  <div class="clearfix"></div>
-
-<?php
-}
-
-/**
  * Add our custom meta box for urls.
  */
 
@@ -77,6 +30,53 @@ function url_page_admin_footer () {
 }
 
 add_action('admin_footer', 'url_page_admin_footer');
+
+/**
+ * Meta box output.
+ *
+ * @param $post
+ */
+
+function url_page_custom_box ($post) {
+  wp_nonce_field( 'url_page_custom_box', 'url_page_custom_box_nonce' );
+  $value = get_post_meta($post->ID, 'url_page', true);
+  if (!is_array($value) || empty($value) && is_array($value)) $value = array('link' => '');
+  ?>
+  <div id="url-page-list-template" class="hidden">
+    <label>Länk</label>
+    <input type="text" name="url-page[][link]" class="url-page-tmpl-link" />
+    <label>Transition</label>
+    <select name="url-page[][transition]" class="url-page-tmpl-transition">
+      <?php foreach (get_transitions() as $t): ?>
+        <option value="<?= $t; ?>"><?= $t; ?></option>
+      <?php endforeach; ?>
+    </select>
+    <a href="#" class="url-page-list-delete">X</a>
+  </div>
+  <a href="#" class="url-page-right add-new-url">Lägg till ny länk</a>
+  <ul class="url-page-list">
+    <?php $i = 0; foreach ($value as $v): ?>
+      <?php if ((isset($v['link']) && !empty($v['link'])) || count($value) === 1): ?>
+      <li>
+        <label>Länk</label>
+        <input type="text" name="url-page[<?= $i; ?>][link]" value="<?= $v['link']; ?>" />
+        <label>Transition</label>
+        <select name="url-page[<?= $i; ?>][transition]">
+          <?php foreach (get_transitions() as $t): ?>
+            <?php if (isset($v['transition'])): ?>
+              <option value="<?= $t; ?>" <?= $t == $v['transition'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </select>
+        <a href="#" class="url-page-list-delete">X</a>
+      </li>
+      <?php endif; $i++; ?>
+    <?php endforeach; ?>
+  </ul>
+  <div class="clearfix"></div>
+
+  <?php
+}
 
 /**
  * Save meta box value.
