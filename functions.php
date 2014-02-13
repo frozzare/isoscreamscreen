@@ -24,7 +24,7 @@ function get_pages_array () {
     $post = array_map(function ($url) {
       $obj = new stdClass;
       if (preg_match('/(\.jpg|\.png|\.bmp)$/', $url['link'])) {
-        $obj->bgUrl = $url['link'];
+        $obj->imgUrl = $url['link'];
       } else {
         $obj->url = $url['link'];
       }
