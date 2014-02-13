@@ -10,6 +10,7 @@ jQuery(function ($) {
 
     tmpl.find('.url-page-tmpl-link').attr('name', 'url-page[' + size + '][link]');
     tmpl.find('.url-page-tmpl-transition').attr('name', 'url-page[' + size + '][transition]');
+    tmpl.find('.url-page-tmpl-template').attr('name', 'url-page[' + size + '][template]');
 
     $li.html(tmpl);
     $ul.append($li);

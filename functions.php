@@ -1,16 +1,6 @@
 <?php
 
-require_once 'includes/url-page.php';
-
-function remove_http ($url) {
-  $disallowed = array('http://', 'https://');
-  foreach($disallowed as $d) {
-    if(strpos($url, $d) === 0) {
-      return str_replace($d, '', $url);
-    }
-  }
-  return $url;
-}
+require_once('includes/url-page.php');
 
 /**
  * Get array of all pages.
@@ -38,6 +28,7 @@ function get_pages_array () {
       } else {
         $obj->url = $url['link'];
       }
+      $obj->template = $url['template'];
       $obj->backgroundTransition = $url['transition'];
       return $obj;
     }, $meta);
@@ -51,10 +42,22 @@ function get_pages_array () {
   return (object)$obj;
 }
 
+/**
+ * Get array of which transitions to use.
+ *
+ * @return array
+ */
+
 function get_transitions () {
   return array('katt', 'mus', 'hund');
 }
 
-function get_file_extension ($file_name) {
-  return substr(strrchr($file_name,'.'),1);
+/**
+ * Get array of which templates to use.
+ *
+ * @return array
+ */
+
+function get_templates () {
+  return array('img', 'url', 'mov');
 }

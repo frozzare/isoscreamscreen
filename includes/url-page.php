@@ -45,9 +45,15 @@ function url_page_custom_box ($post) {
   <div id="url-page-list-template" class="hidden">
     <label>Länk</label>
     <input type="text" name="url-page[][link]" class="url-page-tmpl-link" />
+    <input type="button" class="mediauploader" value="Välj bild" />
     <label>Transition</label>
     <select name="url-page[][transition]" class="url-page-tmpl-transition">
       <?php foreach (get_transitions() as $t): ?>
+        <option value="<?= $t; ?>"><?= $t; ?></option>
+      <?php endforeach; ?>
+    </select>
+    <select name="url-page[][template]" class="url-page-tmpl-template">
+      <?php foreach (get_templates() as $t): ?>
         <option value="<?= $t; ?>"><?= $t; ?></option>
       <?php endforeach; ?>
     </select>
@@ -65,6 +71,11 @@ function url_page_custom_box ($post) {
         <select name="url-page[<?= $i; ?>][transition]">
           <?php foreach (get_transitions() as $t): ?>
             <option value="<?= $t; ?>" <?= isset($v['transition']) && $t == $v['transition'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
+          <?php endforeach; ?>
+        </select>
+        <select name="url-page[<?= $i; ?>][template]">
+          <?php foreach (get_templates() as $t): ?>
+            <option value="<?= $t; ?>" <?= isset($v['template']) && $t == $v['template'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
           <?php endforeach; ?>
         </select>
         <a href="#" class="url-page-list-delete">X</a>
