@@ -123,6 +123,10 @@ function url_page_save_postdata( $post_id ) {
 
   // Update the meta field in the database.
 
+  $value = array_filter($value, function ($v) {
+    return !empty($v['link']);
+  });
+
   update_post_meta( $post_id, 'url_page', $value );
 }
 add_action( 'save_post', 'url_page_save_postdata' );
