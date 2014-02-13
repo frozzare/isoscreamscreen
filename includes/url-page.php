@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Add our custom meta box for urls.
+ */
+
+function url_page_add_custom_box () {
+  add_meta_box('url_page_id', __('URLs to fetch content from', 'isoscreamscreen'), 'url_page_custom_box', 'page');
+}
+
+add_action('add_meta_boxes', 'url_page_add_custom_box');
+
 function url_page_admin_head () {
   ?>
   <style type="text/css">
@@ -116,13 +126,3 @@ function url_page_save_postdata( $post_id ) {
   update_post_meta( $post_id, 'url_page', $value );
 }
 add_action( 'save_post', 'url_page_save_postdata' );
-
-/**
- * Add our custom meta box for urls.
- */
-
-function url_page_add_custom_box () {
-  add_meta_box('url_page_id', __('URLs to fetch content from', 'isoscreamscreen'), 'url_page_custom_box', 'page');
-}
-
-add_action('add_meta_boxes', 'url_page_add_custom_box');
