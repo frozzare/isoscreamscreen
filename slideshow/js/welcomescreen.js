@@ -11,17 +11,25 @@ function loadJson(url) {
 
 	$.getJSON(url)
 		.done(function( data ) {
-
+	var markup = "";
 			$.each( data.content, function( i, item ) {
-
-				$.each( item, function( j, sectionItem ) {
+					
+				
+			
+				//markup += "<section data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">";
+					
+			
+				var bgUrl = item.bgrUrl;
+				var title = item.title;
+				var transition = item.transition;
+				$.each( item.items, function( j, sectionItem ) {
 
 					//console.log(j, sectionItem);
-
+					
 					switch(sectionItem.template)
 					{
 						case "img":
-							htmlSection += getImgSection(sectionItem);
+							markup += getImgSection(sectionItem, bgUrl, title, transition);
 							break;
 						case "mov":
 							htmlSection += getMovSection(sectionItem);
@@ -34,10 +42,12 @@ function loadJson(url) {
 							break;
 					}
 				});
+				
+				//markup +="</section>"
 			});
 
 			//console.log(htmlSection);
-			$( ".slides" ).append( htmlSection );
+			//$( ".slides" ).append( markup );
 
 			startReveal();
 
@@ -48,8 +58,8 @@ function loadJson(url) {
 
 }
 
-function getImgSection(item) {
-	return "<section data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\"></section>"
+function getImgSection(item, bgUrl, title, transition) {
+	return "<section data-background=\"" + bgUrl + "\" data-background-transition=\"" + transition + "\"><div class='overview' style='display:none'><h2>" + title + "</h2></div><div class='content'><img src="+ item.imgUrl +" alt='lol'/></div></section>"
 }
 
 function getMovSection(item) {

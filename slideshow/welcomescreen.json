@@ -1,13 +1,43 @@
 {
-	"content":[[
-		{ "template":"img", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"slide" },
-		{ "template":"img", "bgrUrl":"img/common/header-pattern-blue.png", "backgroundTransition":"slide" },
-		{ "template":"img", "bgrUrl":"img/common/header-pattern-red.png", "backgroundTransition":"slide" },
-		{ "template":"mov", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"fade", "url":"/www.youtube.com/embed/32UGD0fV45g" }
-	],	[
-		{ "template":"img", "bgrUrl":"img/common/header-pattern-blue.png", "backgroundTransition":"zoom" },
-		{ "template":"img", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"zoom" },
-		{ "template":"img", "bgrUrl":"img/common/header-pattern-red.png", "backgroundTransition":"zoom" },
-		{ "template":"mov", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"zoom", "url":"/www.youtube.com/embed/32UGD0fV45g" }
-	]]
+    "content": [
+        {
+            "title": "Vilka är vi",
+			"bgrUrl": "img/common/header-pattern-green.png",
+			"backgroundTransition": "slide",
+            "items": [
+                {
+                    "template": "img",
+				    "imgUrl": "http://troll.dev/isoscreamscreen/slideshow/img/nature.jpg"
+                },
+                {
+                    "template": "img",
+					"imgUrl": "http://troll.dev/isoscreamscreen/slideshow/img/nature2.jpg"
+                }
+            ]
+        },
+        {
+            "title": "Kalle och chokladfabriken",
+			"bgrUrl": "img/common/header-pattern-blue.png",
+            "items": [
+                {
+                    "template": "img",
+					"imgUrl": "http://troll.dev/isoscreamscreen/slideshow/img/nature3.jpg"
+                }
+            ]
+        },
+	  {
+            "title": "Fredriks alternativ",
+			"bgrUrl": "img/common/header-pattern-red.png",
+            "items": [
+				{
+                    "template": "img",
+				    "imgUrl": "http://troll.dev/isoscreamscreen/slideshow/img/nature.jpg"
+                },
+                {
+                    "template": "img",
+					"imgUrl": "http://troll.dev/isoscreamscreen/slideshow/img/nature3.jpg"
+                }
+            ]
+        }
+    ]
 }

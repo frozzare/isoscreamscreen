@@ -12,6 +12,7 @@ var Reveal = (function(){
 	var SLIDES_SELECTOR = '.reveal .slides section',
 		HORIZONTAL_SLIDES_SELECTOR = '.reveal .slides>section',
 		VERTICAL_SLIDES_SELECTOR = '.reveal .slides>section.present>section',
+		ALL_VERTICAL_SLIDES_SELECTED = '.reveal .slides>section>section',
 		HOME_SLIDE_SELECTOR = '.reveal .slides>section:first-of-type',
 
 		// Configurations defaults, can be overridden at initialization time
@@ -1183,10 +1184,36 @@ var Reveal = (function(){
 	 * can't be improved.
 	 */
 	function activateOverview() {
-
+			
 		// Only proceed if enabled in config
 		if( config.overview ) {
-
+		
+				//var usedIds = [];
+		
+				var horizontalSlides = document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );
+						for( var i = 0, len1 = horizontalSlides.length; i < len1; i++ ) {
+							var hslide = horizontalSlides[i];
+							var overviewCont =  $(hslide).find('.overview');
+							overviewCont.show();
+						
+									    $(hslide).find('.content').hide();
+					
+					/* 	var id = overviewCont.attr("id");
+							
+							if(usedIds.indexOf(id) > -1)
+							{
+								overviewCont.parent("section").remove();
+							}
+							
+							usedIds.push(id);	 */
+							
+							
+							
+					
+						 }
+		
+		
+		
 			// Don't auto-slide while in overview mode
 			cancelAutoSlide();
 
@@ -1207,15 +1234,18 @@ var Reveal = (function(){
 			activateOverviewTimeout = setTimeout( function() {
 
 				var horizontalSlides = document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );
-
 				for( var i = 0, len1 = horizontalSlides.length; i < len1; i++ ) {
 					var hslide = horizontalSlides[i],
 						hoffset = config.rtl ? -105 : 105;
-
+						
+					 
+						
+						
+						
 					hslide.setAttribute( 'data-index-h', i );
 
 					// Apply CSS transform
-					transformElement( hslide, 'translateZ(-'+ depth +'px) translate(' + ( ( i - indexh ) * hoffset ) + '%, 0%)' );
+					transformElement( hslide, 'translate(0%, ' + ( ( i - indexh ) * hoffset ) + '%)' );
 
 					if( hslide.classList.contains( 'stack' ) ) {
 
@@ -1230,7 +1260,7 @@ var Reveal = (function(){
 							vslide.setAttribute( 'data-index-v', j );
 
 							// Apply CSS transform
-							transformElement( vslide, 'translate(0%, ' + ( ( j - verticalIndex ) * 105 ) + '%)' );
+							//transformElement( vslide, 'translate(0%, ' + ( ( j - verticalIndex ) * 105 ) + '%)' );
 
 							// Navigate to this slide on click
 							vslide.addEventListener( 'click', onOverviewSlideClicked, true );
@@ -1272,10 +1302,23 @@ var Reveal = (function(){
 
 		// Only proceed if enabled in config
 		if( config.overview ) {
+		
+	
+		
 
 			clearTimeout( activateOverviewTimeout );
 			clearTimeout( deactivateOverviewTimeout );
 
+			
+	
+								var horizontalSlides = document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );
+			for( var i = 0, len1 = horizontalSlides.length; i < len1; i++ ) {
+				var hslide = horizontalSlides[i];
+				console.log(hslide);
+				$(hslide).find('.overview').hide();
+				$(hslide).find('div.content').show();
+			}
+			
 			dom.wrapper.classList.remove( 'overview' );
 
 			// Temporarily add a class so that transitions can do different things
@@ -1305,6 +1348,8 @@ var Reveal = (function(){
 				'indexv': indexv,
 				'currentSlide': currentSlide
 			} );
+			
+
 
 		}
 	}
@@ -2736,10 +2781,53 @@ var Reveal = (function(){
 		}
 		// ESC or O key
 		else if ( ( event.keyCode === 27 || event.keyCode === 79 ) && features.transforms3d ) {
+				console.log(dom.preview);
 			if( dom.preview ) {
+			
+					
 				closePreview();
 			}
 			else {
+			
+						if(!isOverview())
+						{
+					
+							$("#temp-slides").empty();
+						
+							$("#temp-slides").html($(".slides").html());
+				
+						var horizontalSlides = document.querySelectorAll( ALL_VERTICAL_SLIDES_SELECTED );
+						console.log(horizontalSlides.length);
+						for( var i = 0, len1 = horizontalSlides.length; i < len1; i++ ) {
+								
+								
+							var vslide = horizontalSlides[i];
+								console.log(vslide);
+							if(!$(vslide).find("h2").length)
+							{
+								
+								$(vslide).remove();
+							}
+							else
+							{
+								var nextSection  = $(vslide).parent().next();
+								var prop = 'before';
+								prop = nextSection.length ? prop : 'after';
+								nextSection = nextSection.length ? nextSection : $(vslide).parent().prev();
+								$(nextSection)[prop]($(vslide));
+							}
+						}
+						
+						$(".slides .stack").remove();
+						}
+						else
+						{
+						$(".slides").empty();
+				$(".slides").html($("#temp-slides").html());
+						}
+			
+			
+			
 				toggleOverview();
 			}
 
