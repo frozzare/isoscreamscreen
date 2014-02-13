@@ -1,26 +1,14 @@
 <?php
 
-include 'includes/image-page.php';
+include 'includes/url-page.php';
 
 /**
- * Get the page.
+ * Get images for page.
  *
- * @param int $id
- * @param string $meta_key
- * @param bool $single
- * @return null|object
+ * @param int $post_id
+ *
+ * @return array
  */
-
-function get_the_page ($id = 0, $meta_key = '', $single = true) {
-  if (!is_numeric($id)) $meta_key = $id;
-  $id = $id > 0 && is_numeric($id) ? $id : get_the_ID();
-  $post = get_post($id);
-  $post = is_object($post) ? (array)$post : $post;
-  $meta = get_post_meta($id, $meta_key, $single);
-  if (!is_null($meta) && !empty($meta)) $post = array_merge($post, $meta);
-  return is_array($post) ? (object)$post : null;
-}
-
 
 function get_images ($post_id) {
   return array_map(function ($id) {
@@ -28,7 +16,13 @@ function get_images ($post_id) {
   }, dfi_get_post_attachment_ids($post_id));
 }
 
-function get_pages () {
+/**
+ * Get array of all pages.
+ *
+ * @return array
+ */
+
+function get_pages_array () {
   $posts = get_posts(array(
     'post_type' => 'page',
     'post_status' => 'publish',
@@ -36,9 +30,18 @@ function get_pages () {
   ));
   $posts = array_map(function ($post) {
     $obj = new stdClass();
-    $obj->id = $post->id;
+    $obj->id = $post->ID;
     $obj->title = $post->post_title;
     $obj->content = $post->post_content;
+    $obj->images = get_images($post->ID);
+    $obj->urls = get_post_meta($post->ID, 'url_page_value', true);
+    $obj->urls = explode("\n", $obj->urls);
     return $obj;
   }, $posts);
+  return $posts;
 }
+
+function remove_page_meta_boxes () {
+}
+
+add_action( 'admin_menu', 'remove_post_meta_boxes' );
