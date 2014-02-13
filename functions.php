@@ -2,6 +2,16 @@
 
 include 'includes/url-page.php';
 
+function remove_http ($url) {
+  $disallowed = array('http://', 'https://');
+  foreach($disallowed as $d) {
+    if(strpos($url, $d) === 0) {
+      return str_replace($d, '', $url);
+    }
+  }
+  return $url;
+}
+
 /**
  * Get array of all pages.
  *
@@ -14,14 +24,23 @@ function get_pages_array () {
     'post_status' => 'publish',
     'numberposts' => -1
   ));
-  $posts = array_map(function ($post) {
-    $obj = new stdClass();
-    $obj->id = $post->ID;
-    $obj->title = $post->post_title;
-    $obj->content = $post->post_content;
-    $obj->urls = get_post_meta($post->ID, 'url_page', true);
-    return $obj;
-  }, $posts);
+  $posts = array_filter(array_map(function ($post) {
+    // $obj = array();
+    // $obj->id = $post->ID;
+    // $obj->title = $post->post_title;
+    // $obj->text = $post->post_content;
+    return array_map(function ($url) {
+      $obj = new stdClass;
+      $is_image = @getimagesize($url['link']);
+      if ($is_image) {
+        $obj->bgUrl = $url['link'];
+      } else {
+        $obj->url = $url['link'];
+      }
+      $obj->backgroundTransition = $url['transition'];
+      return $obj;
+    }, get_post_meta($post->ID, 'url_page', true));
+  }, $posts));
   return $posts;
 }
 
