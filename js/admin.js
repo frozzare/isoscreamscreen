@@ -1,4 +1,4 @@
-(function ($) {
+jQuery(function ($) {
 
   $('body').on('click', '.add-new-url', function (e) {
     e.preventDefault();
@@ -22,4 +22,17 @@
     });
   });
 
-}(window.jQuery));
+  var orig =  wp.media.editor.send.attachment;
+
+  $('body').on('click', '.mediauploader', function (e) {
+    e.preventDefault();
+    var button = $(this),
+      target = button.prev();
+    wp.media.editor.send.attachment = function(props, attachment) {
+      $(target).val(attachment.url);
+    };
+    wp.media.editor.open(button);
+  });
+
+
+});

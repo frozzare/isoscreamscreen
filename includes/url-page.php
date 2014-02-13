@@ -60,6 +60,7 @@ function url_page_custom_box ($post) {
       <li>
         <label>Länk</label>
         <input type="text" name="url-page[<?= $i; ?>][link]" value="<?= $v['link']; ?>" />
+        <input type="button" class="mediauploader" value="Välj bild" />
         <label>Transition</label>
         <select name="url-page[<?= $i; ?>][transition]">
           <?php foreach (get_transitions() as $t): ?>
