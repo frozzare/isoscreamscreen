@@ -63,9 +63,7 @@ function url_page_custom_box ($post) {
         <label>Transition</label>
         <select name="url-page[<?= $i; ?>][transition]">
           <?php foreach (get_transitions() as $t): ?>
-            <?php if (isset($v['transition'])): ?>
-              <option value="<?= $t; ?>" <?= $t == $v['transition'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
-            <?php endif; ?>
+            <option value="<?= $t; ?>" <?= isset($v['transition']) && $t == $v['transition'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
           <?php endforeach; ?>
         </select>
         <a href="#" class="url-page-list-delete">X</a>
