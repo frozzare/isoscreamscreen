@@ -31,17 +31,16 @@ function get_pages_array () {
     // $obj->text = $post->post_content;
     $meta = get_post_meta($post->ID, 'url_page', true);
     if (!is_array($meta)) $meta = array();
-    return array_map(function ($url) {
+    return array_filter(array_map(function ($url) {
       $obj = new stdClass;
-      $is_image = @getimagesize($url['link']);
-      if ($is_image) {
+      if (preg_match('/(\.jpg|\.png|\.bmp)$/', $url['link'])) {
         $obj->bgUrl = $url['link'];
       } else {
         $obj->url = $url['link'];
       }
       $obj->backgroundTransition = $url['transition'];
       return $obj;
-    }, $meta);
+    }, $meta));
   }, $posts));
   $obj = new stdClass;
   $obj->content = $posts;
@@ -50,4 +49,8 @@ function get_pages_array () {
 
 function get_transitions () {
   return array('katt', 'mus', 'hund');
+}
+
+function get_file_extension ($file_name) {
+  return substr(strrchr($file_name,'.'),1);
 }
