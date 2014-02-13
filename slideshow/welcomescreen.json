@@ -1,0 +1,13 @@
+{
+	"content":[[
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"slide" },
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-blue.png", "backgroundTransition":"slide" },
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-red.png", "backgroundTransition":"slide" },
+		{ "template":"mov", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"fade", "url":"/www.youtube.com/embed/32UGD0fV45g" }
+	],	[
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-blue.png", "backgroundTransition":"zoom" },
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"zoom" },
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-red.png", "backgroundTransition":"zoom" },
+		{ "template":"mov", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"zoom", "url":"/www.youtube.com/embed/32UGD0fV45g" }
+	]]
+}

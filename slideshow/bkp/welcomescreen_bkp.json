@@ -1,0 +1,16 @@
+{
+	"section":[
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-blue.png", "backgroundTransition":"slide" },
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"zoom" },
+		{ "template":"img", "bgrUrl":"img/common/header-pattern-red.png", "backgroundTransition":"concave" },
+		{ "template":"mov", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"fade", "url":"/www.youtube.com/embed/32UGD0fV45g" }
+	],	"section":[
+	{ "template":"img", "bgrUrl":"img/common/header-pattern-blue.png", "backgroundTransition":"slide" },
+	{ "template":"img", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"zoom" },
+	{ "template":"img", "bgrUrl":"img/common/header-pattern-red.png", "backgroundTransition":"concave" },
+	{ "template":"mov", "bgrUrl":"img/common/header-pattern-green.png", "backgroundTransition":"fade", "url":"/www.youtube.com/embed/32UGD0fV45g" }
+]
+}
+
+// transition: 'default', default/cube/page/concave/zoom/linear/fade/none
+// full page transitions backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
