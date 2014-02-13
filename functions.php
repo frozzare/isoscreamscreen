@@ -40,7 +40,7 @@ function get_pages_array () {
       }
       $obj->backgroundTransition = $url['transition'];
       return $obj;
-    }, array_filter($meta));
+    }, $meta);
   }, $posts));
   $obj = new stdClass;
   $obj->content = $posts;
