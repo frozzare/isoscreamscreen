@@ -12,8 +12,7 @@ function startReveal(){
 		history: false,
 		center: true,
 
-
-		//autoSlide: 5000,
+		//autoSlide: 15000,
 		loop: true,
 		slideNumber:false,
 
@@ -27,6 +26,8 @@ function startReveal(){
 		// Transition style for full page slide backgrounds
 		backgroundTransition: 'fade',
 		transition: 'slides',
+		transitionSpeed: 'slow',
+
 		// Parallax scrolling
 		// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
 		// parallaxBackgroundSize: '2100px 900px',
@@ -106,7 +107,7 @@ function nextZoomOutSlide(){
 }
 
 function startZoomOutTimer(){
-	sliderInterval = setInterval(nextOverviewSlide, 1500);
+	sliderInterval = setInterval(nextOverviewSlide, 2500);
 }
 
 function nextOverviewSlide(){
@@ -116,7 +117,7 @@ function nextOverviewSlide(){
 }
 
 function startZoomInTimer(){
-	sliderInterval = setInterval(nextZoomInSlide, 1500);
+	sliderInterval = setInterval(nextZoomInSlide, 2500);
 }
 
 function nextZoomInSlide(){

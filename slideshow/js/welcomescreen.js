@@ -76,7 +76,7 @@ function loadJson(url) {
 }
 
 function getImgSection(nr, item) {
-	var section =  "<section data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
+	var section =  "<section " + " data-autoslide=\"" + item.timer*1000 + "\"" + " data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
 	section += "<div class=\"overview\" style=\"display: none;\"><h2>"
 	if(nr==0) section += item.title;
 	section +="</h2></div>";
@@ -87,7 +87,7 @@ function getImgSection(nr, item) {
 }
 
 function getMovSection(nr, item) {
-	var section =  "<section data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
+	var section =  "<section " + " data-autoslide=\"" + item.timer*1000 + "\"" + " data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
 	section += "<div class=\"overview\" style=\"display: none;\"><h2>"
 	if(nr==0) section += item.title;
 	section +="</h2></div>";
@@ -99,7 +99,7 @@ function getMovSection(nr, item) {
 }
 
 function getUrlSection(nr, item) {
-	var section =  "<section data-autoslide=\"10000\"  data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
+	var section =  "<section " + " data-autoslide=\"" + item.timer*1000 + "\"" + " data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
 	section += "<div class=\"overview\" style=\"display: none;\"><h2>"
 	if(nr==0) section += item.title;
 	section +="</h2></div>";
