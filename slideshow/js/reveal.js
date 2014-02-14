@@ -2136,7 +2136,9 @@ var Reveal = (function(){
 
 			// iframe embeds
 			toArray( slide.querySelectorAll( 'iframe' ) ).forEach( function( el ) {
-				el.contentWindow.postMessage( 'slide:stop', '*' );
+				if (el.contentWindow) {
+  				  el.contentWindow.postMessage( 'slide:stop', '*' );
+  				}
 			});
 
 			// YouTube embeds
