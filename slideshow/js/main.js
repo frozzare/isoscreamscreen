@@ -1,5 +1,6 @@
 
 var sliderInterval;
+var isInitialized;
 
 
 function startReveal(){
@@ -41,7 +42,9 @@ function startReveal(){
 ]
 });
 
-startSliderTimer();
+	isInitialized = true;
+
+	startSliderTimer();
 
 }
 
@@ -72,6 +75,15 @@ function nextSlide(){
 	Reveal.down();
 
 	if(lastindexv == indexv){
+
+		/*if(Reveal.isLastSlide()){
+			console.log("lastslide");
+			stopSliderTimer();
+
+			location.reload();
+		}
+		else */
+
 		nextZoomOutSlide();
 	}
 	else{

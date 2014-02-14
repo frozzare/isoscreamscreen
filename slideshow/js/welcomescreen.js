@@ -1,9 +1,11 @@
+var jsonObj = {};
+var jsonUrl = "welcomescreen.json";
+
+
 $( document ).ready(function() {
-	loadJson("welcomescreen.json");
+	loadJson(jsonUrl);
 	//loadJson("http://162.13.12.91/");
 });
-
-jsonObj = {};
 
 
 
@@ -11,6 +13,8 @@ jsonObj = {};
  * Load JSON-data with slider data content
  */
 function loadJson(url) {
+
+
 
 	var htmlSection = "";
 
@@ -52,11 +56,17 @@ function loadJson(url) {
 
 			});
 
-			//console.log( htmlSection );
 
+			//$( ".slides" ).empty();
 			$( ".slides" ).append( htmlSection );
 
-			startReveal();
+			console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
+
+			if(!isInitialized) startReveal();
+			else{
+				startSliderTimer();
+			}
+			console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
 
 		})
 		.fail(function() {
