@@ -148,10 +148,6 @@ function url_page_save_postdata( $post_id ) {
 
   // Sanitize user input.
   $value = $_POST['url-page'];
-  echo '<pre>';
-  print_r($value);
-  echo '</pre>';
-  die ();
 
   // Update the meta field in the database.
 
