@@ -17,7 +17,7 @@ function get_pages_array () {
   $posts = array_filter(array_map(function ($post) {
     $obj = new stdClass;
     // $obj->id = $post->ID;
-    $obj->title = $post->post_title;
+    // $obj->title = $post->post_title;
     // $obj->text = $post->post_content;
     $meta = get_post_meta($post->ID, 'url_page', true);
     if (!is_array($meta)) $meta = array();
@@ -28,8 +28,11 @@ function get_pages_array () {
       } else {
         $obj->url = $url['link'];
       }
+      $obj->bgUrl = $url['bgUrl'];
+      $obj->timer = $url['timer'];
       $obj->template = $url['template'];
       $obj->backgroundTransition = $url['transition'];
+      $obj->title = $url['title'];
       return $obj;
     }, $meta);
     $res = array();

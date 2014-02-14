@@ -46,17 +46,25 @@ function url_page_custom_box ($post) {
     <label>Länk</label>
     <input type="text" name="url-page[][link]" class="url-page-tmpl-link" />
     <input type="button" class="mediauploader" value="Välj bild" />
+    <label>Template</label>
+    <select name="url-page[][template]" class="url-page-tmpl-template">
+      <?php foreach (get_templates() as $t): ?>
+        <option value="<?= $t; ?>"><?= $t; ?></option>
+      <?php endforeach; ?>
+    </select>
+    <label>Bakgrundsbild</label>
+    <input type="text" name="url-page[][bgUrl]" class="url-page-tmpl-bgurl" />
+    <input type="button" class="mediauploader" value="Välj bild" />
     <label>Transition</label>
     <select name="url-page[][transition]" class="url-page-tmpl-transition">
       <?php foreach (get_transitions() as $t): ?>
         <option value="<?= $t; ?>"><?= $t; ?></option>
       <?php endforeach; ?>
     </select>
-    <select name="url-page[][template]" class="url-page-tmpl-template">
-      <?php foreach (get_templates() as $t): ?>
-        <option value="<?= $t; ?>"><?= $t; ?></option>
-      <?php endforeach; ?>
-    </select>
+    <label>Timer</label>
+    <input type="text" name="url-page[][timer]" value="5" class="url-page-tmpl-timer" />
+    <label>Title</label>
+    <input type="text" name="url-page[][title]" class="url-page-tmpl-title" />
     <a href="#" class="url-page-list-delete">X</a>
   </div>
   <a href="#" class="url-page-right add-new-url">Lägg till ny länk</a>
@@ -67,17 +75,25 @@ function url_page_custom_box ($post) {
         <label>Länk</label>
         <input type="text" name="url-page[<?= $i; ?>][link]" value="<?= $v['link']; ?>" />
         <input type="button" class="mediauploader" value="Välj bild" />
+        <label>Template</label>
+        <select name="url-page[<?= $i; ?>][template]">
+          <?php foreach (get_templates() as $t): ?>
+            <option value="<?= $t; ?>" <?= isset($v['template']) && $t == $v['template'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
+          <?php endforeach; ?>
+        </select>
+        <label>Bakgrundsbild</label>
+        <input type="text" name="url-page[<?= $i; ?>][bgUrl]" value="<?= $v['bgUrl']; ?>" />
+        <input type="button" class="mediauploader" value="Välj bild" />
         <label>Transition</label>
         <select name="url-page[<?= $i; ?>][transition]">
           <?php foreach (get_transitions() as $t): ?>
             <option value="<?= $t; ?>" <?= isset($v['transition']) && $t == $v['transition'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
           <?php endforeach; ?>
         </select>
-        <select name="url-page[<?= $i; ?>][template]">
-          <?php foreach (get_templates() as $t): ?>
-            <option value="<?= $t; ?>" <?= isset($v['template']) && $t == $v['template'] ? 'selected="selected"' : ''; ?>><?= $t; ?></option>
-          <?php endforeach; ?>
-        </select>
+        <label>Timer</label>
+        <input type="text" name="url-page[<?= $i; ?>][timer]" value="<?= empty($v['timer']) ? 5 : $v['timer'];  ?>" />
+        <label>Title</label>
+        <input type="text" name="url-page[<?= $i; ?>][title]" class="url-page-tmpl-title" value="<?= $v['title'];  ?>"  />
         <a href="#" class="url-page-list-delete">X</a>
       </li>
       <?php endif; $i++; ?>
