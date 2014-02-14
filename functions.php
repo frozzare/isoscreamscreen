@@ -28,7 +28,7 @@ function get_pages_array () {
       } else {
         $obj->url = $url['link'];
       }
-      $obj->bgUrl = $url['bgUrl'];
+      $obj->bgrUrl = $url['bgUrl'];
       $obj->timer = is_null($url['timer']) ? 5 : $url['timer'];
       $obj->template = $url['template'];
       $obj->backgroundTransition = $url['transition'];
