@@ -13,7 +13,7 @@ jQuery(function ($) {
     tmpl.find('.url-page-tmpl-template').attr('name', 'url-page[' + size + '][template]');
     tmpl.find('.url-page-tmpl-bgurl').attr('name', 'url-page[' + size + '][bgUrl]');
     tmpl.find('.url-page-tmpl-timer').attr('name', 'url-page[' + size + '][timer]');
-    tmpl.find('.url-page-tmpl-timer').attr('name', 'url-page[' + size + '][title]');
+    tmpl.find('.url-page-tmpl-title').attr('name', 'url-page[' + size + '][title]');
 
     $li.html(tmpl);
     $ul.append($li);

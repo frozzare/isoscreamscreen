@@ -28,10 +28,13 @@ function humanDate () {
 
 	var localTime = h + ":" + m + ":" + s;
 
+	// ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'][now.getDay()]
+	// ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'][now.getMonth()]
+
 	return {
-		day: ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'][now.getDay()],
+		day: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][now.getDay()],
 		date: now.getDate(),
-		month: ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'][now.getMonth()],
+		month: ['January','February','March','April','May','June','July','August','September','October','November','December'][now.getMonth()],
 		time: localTime
 
 	};
