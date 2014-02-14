@@ -3,8 +3,9 @@ var jsonUrl = "welcomescreen.json";
 
 
 $( document ).ready(function() {
-	loadJson(jsonUrl);
-	//loadJson("http://162.13.12.91/");
+	//loadJson(jsonUrl);
+	loadJson('http://162.13.12.91/');
+	//loadJson("http://dev.wordpress.org/");
 });
 
 
@@ -12,7 +13,7 @@ $( document ).ready(function() {
 /**
  * Load JSON-data with slider data content
  */
-function loadJson(url) {
+function loadJson(url, reload) {
 
 
 
@@ -58,7 +59,25 @@ function loadJson(url) {
 
 
 			//$( ".slides" ).empty();
+			if (reload) {
+				var $t = $('#temp');
+				var $o = $('body > div.reveal');
+				$t.find('> div > div').append(htmlSection);
+				$t.find('> div').addClass('reveal slides center');
+				$t.find('> div > div').addClass('slides');
+				$o.remove();
+				$t.after($t.html());
+				$t.html('<div><div></div></div>');
+				setTimeout(function () {
+					stopSliderTimer();
+					setTimeout(function () {
+						startReveal();
+					}, 300);
+				}, 300);
+			} else {
+
 			$( ".slides" ).append( htmlSection );
+
 
 			console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
 
@@ -67,7 +86,7 @@ function loadJson(url) {
 				startSliderTimer();
 			}
 			console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
-
+		}
 		})
 		.fail(function() {
 			console.log( "error" );

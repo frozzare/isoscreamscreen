@@ -47,3 +47,9 @@
 	max-width: 100%;
 	max-height: 100%;
 }
+
+body {
+	background: url(../img/common/screen_bg_blue.png) top center no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+}

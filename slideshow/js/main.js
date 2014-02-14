@@ -77,13 +77,14 @@ function nextSlide(){
 
 	if(lastindexv == indexv){
 
-		/*if(Reveal.isLastSlide()){
+		if(Reveal.isLastSlide()){
 			console.log("lastslide");
 			stopSliderTimer();
 
-			location.reload();
+			//location.reload();
+			// Reveal.togglePause();
+			loadJson("http://dev.wordpress.org/", true);
 		}
-		else */
 
 		nextZoomOutSlide();
 	}
