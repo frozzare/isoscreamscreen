@@ -29,7 +29,7 @@ function get_pages_array () {
         $obj->url = $url['link'];
       }
       $obj->bgUrl = $url['bgUrl'];
-      $obj->timer = $url['timer'];
+      $obj->timer = is_null($url['timer']) ? 5 : $url['timer'];
       $obj->template = $url['template'];
       $obj->backgroundTransition = $url['transition'];
       $obj->title = $url['title'];
