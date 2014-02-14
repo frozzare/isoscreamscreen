@@ -4,7 +4,8 @@ var jsonUrl = "welcomescreen.json";
 
 $( document ).ready(function() {
 	//loadJson(jsonUrl);
-	loadJson("http://dev.wordpress.org/");
+	loadJson('http://162.13.12.91/');
+	//loadJson("http://dev.wordpress.org/");
 });
 
 
