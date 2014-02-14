@@ -1,0 +1,62 @@
+{
+	"content": [
+		{
+
+			"items": [
+				{
+					"title": "Vilka är vi",
+					"bgrUrl": "img/common/screen_bg_green.png",
+					"backgroundTransition": "slide",
+					"template": "img",
+					"imgUrl": "img/news/sr-play/sr-play-820x476.jpg",
+					"timer":5
+				},
+				{
+					"title": "Vilka har vi här då",
+					"bgrUrl": "img/common/screen_bg_green.png",
+					"backgroundTransition": "slide",
+					"template": "url",
+					"url":"https://isotop.geckoboard.com/dashboards/377CEA688D55592F",
+					"timer":8
+				},
+				{
+					"title": "Vilka är vi",
+					"bgrUrl": "img/common/screen_bg_green.png",
+					"backgroundTransition": "slide",
+					"template": "img",
+					"imgUrl": "img/news/sr-play/sr-play-820x476.jpg",
+					"timer":5
+				},
+				{
+					"title": "Vilka har vi här då",
+					"bgrUrl": "img/common/screen_bg_green.png",
+					"backgroundTransition": "slide",
+					"template": "url",
+					"url":"http://www.idg.se",
+					"timer":8
+				}
+			]
+		},
+		{
+			"items": [
+				{
+					"title": "Kalle och chokladfabrikeni",
+					"bgrUrl": "img/common/screen_bg_blue.png",
+					"backgroundTransition": "slide",
+					"template": "img",
+					"imgUrl": "img/news/sr-play/sr-play-820x476.jpg",
+					"timer":5
+				},
+				{
+					"title": "Vilka är vi",
+					"bgrUrl": "img/common/screen_bg_blue.png",
+					"backgroundTransition": "slide",
+					"template": "img",
+					"imgUrl": "img/news/sr-play/sr-play-820x476.jpg",
+					"timer":5
+				}
+
+			]
+		}
+	]
+}

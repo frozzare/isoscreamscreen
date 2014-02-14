@@ -1,0 +1,13 @@
+{
+	"content":[[
+		{ "template":"img", "bgrUrl":"img/common/screen_bg_green.png", "backgroundTransition":"fade" },
+		{ "template":"img", "bgrUrl":"img/common/screen_bg_green.png", "backgroundTransition":"fade" },
+		{ "template":"img", "bgrUrl":"img/common/screen_bg_green.png", "backgroundTransition":"fade" },
+		{ "template":"url", "bgrUrl":"img/common/screen_bg_green.png", "backgroundTransition":"fade", "url":"https://isotop.geckoboard.com/dashboards/377CEA688D55592F" }
+	],	[
+		{ "template":"img", "bgrUrl":"img/common/screen_bg_blue.png", "backgroundTransition":"fade" },
+		{ "template":"img", "bgrUrl":"img/common/screen_bg_blue.png", "backgroundTransition":"fade" },
+		{ "template":"url", "bgrUrl":"img/common/screen_bg_blue.png", "backgroundTransition":"fade", "url":"http://www.idg.se" },
+		{ "template":"img", "bgrUrl":"img/common/screen_bg_blue.png", "backgroundTransition":"fade" }
+	]]
+}

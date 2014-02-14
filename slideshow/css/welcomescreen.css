@@ -1,0 +1,49 @@
+.iso_header{
+	position:absolute;
+	top:0;
+	background-color: #000;
+	height:100px;
+	width:100%;
+}
+
+.iso_header h3{
+	background-color: #000;
+	color:#fff;
+	position:absolute;
+	top: 20px;
+	right: 27px;
+	font-family:"Trebuchet MS";
+}
+
+.iso_header img{
+	position:absolute;
+	top: 20px;
+	left: 27px;
+}
+
+.iso_footer{
+	background-color: #000;
+	height:100px;
+	color:#fff;
+	position:absolute;
+	bottom:0;
+	width:100%;
+	font-family:"Trebuchet MS";
+}
+
+.iso_footer .sectioncounter{
+	position:absolute;
+	bottom: 20px;
+	right: 27px;
+}
+
+.iso_footer .sectionname{
+	position:absolute;
+	bottom: 20px;
+	left: 27px;
+}
+
+.reveal iframe {
+	max-width: 100%;
+	max-height: 100%;
+}
