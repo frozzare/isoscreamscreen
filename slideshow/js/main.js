@@ -23,7 +23,7 @@ function startReveal(){
 
 		theme: 'night', //Reveal.getQueryHash().theme, // available themes are in /css/theme
 		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
+		transitionSpeed: 'slow',
 		// Transition style for full page slide backgrounds
 		backgroundTransition: 'fade',
 		transition: 'slides',
@@ -82,7 +82,7 @@ function nextSlide(){
 
 			//location.reload();
 			// Reveal.togglePause();
-			loadJson("http://dev.wordpress.org/", true);
+			// loadJson("http://dev.wordpress.org/", true);
 		}
 
 		nextZoomOutSlide();
