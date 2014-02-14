@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 	loadJson("welcomescreen.json");
+	//loadJson("http://162.13.12.91/");
 });
 
 jsonObj = {};
