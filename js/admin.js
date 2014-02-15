@@ -28,7 +28,7 @@ jQuery(function ($) {
 
   var orig =  wp.media.editor.send.attachment;
 
-  $('body').on('click', '.mediauploader', function (e) {
+  $('body').on('click', '.mediauploader', function (e) {
     e.preventDefault();
     var button = $(this),
       target = button.prev();
