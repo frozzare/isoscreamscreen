@@ -230,6 +230,12 @@ body {
 	z-index: 1;
 }
 
+.reveal iframe[data-autoplay] {
+  min-height: 100%;
+  min-width: 100%;
+  margin-top: -20px;
+}
+
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,
 .reveal video,
