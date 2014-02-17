@@ -1563,7 +1563,7 @@ var Reveal = (function(){
 
 		// Handle embedded content
 		if( slideChanged ) {
-			stopEmbeddedContent( previousSlide );
+  			stopEmbeddedContent( previousSlide );
 			startEmbeddedContent( currentSlide );
 		}
 
@@ -2096,7 +2096,6 @@ var Reveal = (function(){
 	 * the targeted slide.
 	 */
 	function startEmbeddedContent( slide ) {
-
 		if( slide && !isSpeakerNotes() ) {
 			// HTML5 media elements
 			toArray( slide.querySelectorAll( 'video, audio' ) ).forEach( function( el ) {

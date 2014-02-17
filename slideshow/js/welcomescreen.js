@@ -4,8 +4,8 @@ var jsonUrl = "welcomescreen.json";
 
 $( document ).ready(function() {
 	//loadJson(jsonUrl);
-	loadJson('http://162.13.12.91/');
-	//loadJson("http://dev.wordpress.org/");
+	//loadJson('http://162.13.12.91/');
+	loadJson("http://dev.wordpress.org/");
 });
 
 
@@ -79,13 +79,13 @@ function loadJson(url, reload) {
 			$( ".slides" ).append( htmlSection );
 
 
-			console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
+			// console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
 
 			if(!isInitialized) startReveal();
 			else{
 				startSliderTimer();
 			}
-			console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
+			// console.log("Reveal " + isInitialized); //Reveal.isLastSlide();
 		}
 		})
 		.fail(function() {
@@ -97,7 +97,7 @@ function loadJson(url, reload) {
 function getImgSection(nr, item) {
 	var section =  "<section " + " data-autoslide=\"" + item.timer*1000 + "\"" + " data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
 	section += "<div class=\"overview\" style=\"display: none;\"><h2>"
-	if(nr==0) section += item.title;
+	if(nr===0) section += item.title;
 	section +="</h2></div>";
 	section += "<div class=\"content\"><img src =\"" + item.imgUrl + "\"></div>";
 	section	+= "</section>"
@@ -108,9 +108,13 @@ function getImgSection(nr, item) {
 function getMovSection(nr, item) {
 	var section =  "<section " + " data-autoslide=\"" + item.timer*1000 + "\"" + " data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
 	section += "<div class=\"overview\" style=\"display: none;\"><h2>"
-	if(nr==0) section += item.title;
+	if(nr===0) section += item.title;
 	section +="</h2></div>";
-	section += "<iframe data-autoplay src=\"" + item.url + "\" frameborder=\"0\" allowfullscreen></iframe>";
+	if (/youtube\.com/.test(item.url)) {
+		section += "<iframe data-autoplay src=\"" + item.url + "\" frameborder=\"0\" allowfullscreen></iframe>";
+	} else {
+		section += "<video data-autoplay src=\"" + item.url + "\"></video>";
+	}
 	section += "</section>"
 
 	return section;
@@ -120,7 +124,7 @@ function getMovSection(nr, item) {
 function getUrlSection(nr, item) {
 	var section =  "<section " + " data-autoslide=\"" + item.timer*1000 + "\"" + " data-background=\"" + item.bgrUrl + "\" data-background-transition=\"" + item.backgroundTransition + "\">"
 	section += "<div class=\"overview\" style=\"display: none;\"><h2>"
-	if(nr==0) section += item.title;
+	if(nr===0) section += item.title;
 	section +="</h2></div>";
 	section += "<iframe class=\"stretch\" width='1080px' height='2420px' src=\"" + item.url + "\" ></iframe>"
 	section += "</section>"
